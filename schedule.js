@@ -1,7 +1,6 @@
 // ============================================================================
 // 1. CONSTANTS
 // ============================================================================
-
 const SHIFT_STATES = ["", "D", "E", "N"];
 const MONTH_NAMES = [
   "January","February","March","April","May","June",
@@ -9,54 +8,12 @@ const MONTH_NAMES = [
 ];
 const WEEKDAY_NAMES = ["S","M","T","W","T","F","S"];
 
-// Storage key for saving schedules locally
-const STORAGE_KEY = "ryder_shift_schedule_v1";
-
-let scheduleStore = {}; // dateKey → { shift, holiday, vacation }
+// Read-only mode: just use DEFAULT_SCHEDULE from schedule-data.js
+let scheduleStore = DEFAULT_SCHEDULE;
 
 // ============================================================================
-// 2. LOAD & SAVE SCHEDULE
+// 2. DOM ELEMENTS
 // ============================================================================
-
-// Load from localStorage, or fallback to DEFAULT_SCHEDULE (from schedule-data.js)
-function loadSchedule() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-
-    if (!raw) {
-      // No saved schedule → use DEFAULT_SCHEDULE from schedule-data.js
-      scheduleStore = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
-      saveSchedule();
-      return;
-    }
-
-    const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed === "object") {
-      scheduleStore = parsed;
-    } else {
-      scheduleStore = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
-      saveSchedule();
-    }
-
-  } catch (err) {
-    console.error("Failed to load schedule:", err);
-    scheduleStore = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
-    saveSchedule();
-  }
-}
-
-function saveSchedule() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(scheduleStore));
-  } catch (err) {
-    console.error("Failed to save schedule:", err);
-  }
-}
-
-// ============================================================================
-// 3. DOM ELEMENTS
-// ============================================================================
-
 const calendarEl   = document.getElementById("calendar");
 const yearInput    = document.getElementById("yearInput");
 const applyYearBtn = document.getElementById("applyYearBtn");
@@ -68,9 +25,8 @@ const importBtn    = document.getElementById("importBtn");
 const importFile   = document.getElementById("importFile");
 
 // ============================================================================
-// 4. DATE HELPERS
+// 3. DATE HELPERS
 // ============================================================================
-
 function pad(n) {
   return n < 10 ? "0" + n : String(n);
 }
@@ -85,15 +41,13 @@ function dateKey(year, monthIndex, day) {
 function getDayState(key) {
   if (!scheduleStore[key]) {
     scheduleStore[key] = { shift: "", holiday: false, vacation: false };
-    saveSchedule();
   }
   return scheduleStore[key];
 }
 
 // ============================================================================
-// 5. BUILD MONTH TABLE
+// 4. BUILD MONTH TABLE
 // ============================================================================
-
 function buildMonthTable(year, monthIndex) {
   const monthCard = document.createElement("div");
   monthCard.className = "month-card";
@@ -108,13 +62,11 @@ function buildMonthTable(year, monthIndex) {
 
   const thead = document.createElement("thead");
   const trHead = document.createElement("tr");
-
   WEEKDAY_NAMES.forEach(d => {
     const th = document.createElement("th");
     th.textContent = d;
     trHead.appendChild(th);
   });
-
   thead.appendChild(trHead);
   table.appendChild(thead);
 
@@ -123,13 +75,10 @@ function buildMonthTable(year, monthIndex) {
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
 
   let currentDay = 1;
-
   for (let week = 0; week < 6; week++) {
     const tr = document.createElement("tr");
-
     for (let wd = 0; wd < 7; wd++) {
       const td = document.createElement("td");
-
       if ((week === 0 && wd < firstDayOfWeek) || currentDay > daysInMonth) {
         td.classList.add("empty");
         tr.appendChild(td);
@@ -138,7 +87,6 @@ function buildMonthTable(year, monthIndex) {
 
       const key = dateKey(year, monthIndex, currentDay);
       td.dataset.dateKey = key;
-
       if (key === TODAY_KEY) td.classList.add("today");
 
       const dayNum = document.createElement("div");
@@ -162,7 +110,6 @@ function buildMonthTable(year, monthIndex) {
       tr.appendChild(td);
       currentDay++;
     }
-
     tbody.appendChild(tr);
   }
 
@@ -179,13 +126,11 @@ function renderCalendar(year) {
 }
 
 // ============================================================================
-// 6. UPDATE CELL FROM STATE
+// 5. UPDATE CELL FROM STATE
 // ============================================================================
-
 function updateCell(td) {
   const key = td.dataset.dateKey;
   const state = getDayState(key);
-
   const shiftDiv = td.querySelector(".shift-code");
   const dayNum = td.querySelector(".day-number");
 
@@ -193,31 +138,26 @@ function updateCell(td) {
   dayNum.classList.remove("vacation-on");
 
   shiftDiv.textContent = state.shift;
-
   if (state.shift === "D") td.classList.add("shift-day");
   if (state.shift === "E") td.classList.add("shift-eve");
   if (state.shift === "N") td.classList.add("shift-night");
-
   if (state.holiday) td.classList.add("holiday-on");
   if (state.vacation) dayNum.classList.add("vacation-on");
 }
 
 // ============================================================================
-// 7. CLICK HANDLERS
+// 6. CLICK HANDLERS - READ ONLY, CHANGES NOT SAVED
 // ============================================================================
-
 function onDayClick(td, event) {
   if (td.classList.contains("empty")) return;
-
   const key = td.dataset.dateKey;
   const state = getDayState(key);
 
   // Alt-click = VACATION
   if (event.altKey) {
     state.vacation = !state.vacation;
-    saveSchedule();
     updateCell(td);
-    statusEl.textContent = `${key} vacation ${state.vacation ? "ON" : "OFF"}`;
+    statusEl.textContent = `${key} vacation ${state.vacation ? "ON" : "OFF"} (temporary - not saved)`;
     return;
   }
 
@@ -225,32 +165,29 @@ function onDayClick(td, event) {
   const idx = SHIFT_STATES.indexOf(state.shift);
   const newShift = SHIFT_STATES[(idx + 1) % SHIFT_STATES.length];
   state.shift = newShift;
-  saveSchedule();
   updateCell(td);
-  statusEl.textContent = `${key} shift set to ${newShift || "empty"}.`;
+  statusEl.textContent = `${key} shift set to ${newShift || "empty"} (temporary - not saved)`;
 }
 
 function toggleHoliday(key) {
   const state = getDayState(key);
   state.holiday = !state.holiday;
-  saveSchedule();
-  statusEl.textContent = `${key} holiday ${state.holiday ? "ON" : "OFF"}`;
+  statusEl.textContent = `${key} holiday ${state.holiday ? "ON" : "OFF"} (temporary - not saved)`;
 }
 
 // ============================================================================
-// 8. EXPORT / IMPORT
+// 7. EXPORT / IMPORT
 // ============================================================================
-
 exportBtn.addEventListener("click", () => {
   const data = JSON.stringify(scheduleStore, null, 2);
   const blob = new Blob([data], { type: "application/json" });
   const url = URL.createObjectURL(blob);
-
   const a = document.createElement("a");
   a.href = url;
   a.download = "ryder-shifts.json";
   a.click();
   URL.revokeObjectURL(url);
+  statusEl.textContent = "Schedule exported! Copy this JSON into schedule-data.js on GitHub.";
 });
 
 importBtn.addEventListener("click", () => importFile.click());
@@ -258,12 +195,10 @@ importBtn.addEventListener("click", () => importFile.click());
 importFile.addEventListener("change", () => {
   const file = importFile.files[0];
   if (!file) return;
-
   const reader = new FileReader();
   reader.onload = e => {
     try {
       scheduleStore = JSON.parse(e.target.result);
-      saveSchedule();
       renderCalendar(currentYear);
       statusEl.textContent = "Schedule imported.";
     } catch {
@@ -274,9 +209,8 @@ importFile.addEventListener("change", () => {
 });
 
 // ============================================================================
-// 9. CONTROLS
+// 8. CONTROLS
 // ============================================================================
-
 let currentYear = new Date().getFullYear();
 
 applyYearBtn.addEventListener("click", () => {
@@ -297,10 +231,9 @@ sizeSelect.addEventListener("change", () => {
 printBtn.addEventListener("click", () => window.print());
 
 // ============================================================================
-// 10. INIT
+// 9. INIT
 // ============================================================================
-
-loadSchedule();
 document.body.classList.add("size-medium");
 yearInput.value = currentYear;
 renderCalendar(currentYear);
+statusEl.textContent = "Schedule loaded from GitHub (read-only)";
