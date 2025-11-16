@@ -1,5 +1,4 @@
-const DEFAULT_SCHEDULE = {
-    "2025-01-01": {
+const DEFAULT_SCHEDULE = {  "2025-01-01": {
     "shift": "",
     "holiday": false,
     "vacation": false
@@ -20,107 +19,107 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-01-05": {
-    "shift": "N",
-    "holiday": true,
+    "shift": "",
+    "holiday": false,
     "vacation": false
   },
   "2025-01-06": {
-    "shift": "N",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-07": {
-    "shift": "N",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-08": {
-    "shift": "N",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-09": {
-    "shift": "N",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-10": {
-    "shift": "N",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-11": {
-    "shift": "N",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-12": {
-    "shift": "E",
-    "holiday": true,
+    "shift": "",
+    "holiday": false,
     "vacation": false
   },
   "2025-01-13": {
-    "shift": "E",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-14": {
-    "shift": "E",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-15": {
-    "shift": "E",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-16": {
-    "shift": "E",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-17": {
-    "shift": "E",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-18": {
-    "shift": "E",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-19": {
-    "shift": "D",
-    "holiday": true,
+    "shift": "",
+    "holiday": false,
     "vacation": false
   },
   "2025-01-20": {
-    "shift": "D",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-21": {
-    "shift": "D",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-22": {
-    "shift": "D",
+    "shift": "",
     "holiday": false,
-    "vacation": true
+    "vacation": false
   },
   "2025-01-23": {
-    "shift": "D",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-24": {
-    "shift": "D",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
   "2025-01-25": {
-    "shift": "D",
+    "shift": "",
     "holiday": false,
     "vacation": false
   },
@@ -1216,7 +1215,7 @@ const DEFAULT_SCHEDULE = {
   },
   "2025-09-01": {
     "shift": "",
-    "holiday": false,
+    "holiday": true,
     "vacation": false
   },
   "2025-09-02": {
@@ -1361,7 +1360,7 @@ const DEFAULT_SCHEDULE = {
   },
   "2025-09-30": {
     "shift": "",
-    "holiday": false,
+    "holiday": true,
     "vacation": false
   },
   "2025-10-01": {
@@ -1380,22 +1379,22 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-10-04": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-10-05": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-10-06": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-10-07": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
@@ -1415,37 +1414,37 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-10-11": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-10-12": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-10-13": {
-    "shift": "",
-    "holiday": false,
+    "shift": "D",
+    "holiday": true,
     "vacation": false
   },
   "2025-10-14": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-10-15": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-10-16": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-10-17": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
@@ -1470,17 +1469,17 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-10-22": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-10-23": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-10-24": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
@@ -1505,37 +1504,37 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-10-29": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-10-30": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-10-31": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-11-01": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-11-02": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-11-03": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-11-04": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
@@ -1555,23 +1554,23 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-11-08": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-11-09": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-11-10": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-11-11": {
-    "shift": "",
-    "holiday": false,
+    "shift": "N",
+    "holiday": true,
     "vacation": false
   },
   "2025-11-12": {
@@ -1590,37 +1589,37 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-11-15": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-11-16": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-11-17": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-11-18": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-11-19": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-11-20": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-11-21": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
@@ -1645,17 +1644,17 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-11-26": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-11-27": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-11-28": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
@@ -1680,37 +1679,37 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-12-03": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-04": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-05": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-06": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-12-07": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-12-08": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-12-09": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
@@ -1730,22 +1729,22 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-12-13": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-12-14": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-12-15": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
   "2025-12-16": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
@@ -1765,38 +1764,38 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-12-20": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-21": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-22": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-23": {
-    "shift": "",
+    "shift": "D",
     "holiday": false,
     "vacation": false
   },
   "2025-12-24": {
-    "shift": "",
+    "shift": "E",
     "holiday": false,
     "vacation": false
   },
   "2025-12-25": {
-    "shift": "",
-    "holiday": false,
+    "shift": "E",
+    "holiday": true,
     "vacation": false
   },
   "2025-12-26": {
-    "shift": "",
-    "holiday": false,
+    "shift": "E",
+    "holiday": true,
     "vacation": false
   },
   "2025-12-27": {
@@ -1820,7 +1819,7 @@ const DEFAULT_SCHEDULE = {
     "vacation": false
   },
   "2025-12-31": {
-    "shift": "",
+    "shift": "N",
     "holiday": false,
     "vacation": false
   },
@@ -3649,5 +3648,4 @@ const DEFAULT_SCHEDULE = {
     "holiday": false,
     "vacation": false
   }
-  
 };
