@@ -358,7 +358,7 @@ body .month-table tbody td {
 }
 
 .month-table tbody td .shift-code {
-  font-size: rem;
+  font-size: 1rem;
   font-weight: 600;
   pointer-events: none;
   color: #fdf2ff;
